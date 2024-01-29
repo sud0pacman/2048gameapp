@@ -1,0 +1,58 @@
+package com.example.a2048.presenter.screen.home
+
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.a2048.R
+import com.example.a2048.data.MySharedPreferences
+import com.example.a2048.databinding.ScreenHomeBinding
+
+class HomeScreen : Fragment() {
+    private var _binding: ScreenHomeBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = ScreenHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        val navController = findNavController()
+
+        binding.btnPlay.setOnClickListener { navController.navigate(R.id.action_homeScreen_to_gameScreen) }
+
+        binding.icInfo.setOnClickListener { navController.navigate(R.id.action_homeScreen_to_screenInfo) }
+
+        binding.icStatistics.setOnClickListener {
+            val scores = MySharedPreferences.getBestScores()
+
+            val dialog = Dialog(requireContext())
+            dialog.setContentView(R.layout.dialog_statistics)
+            dialog.window!!.findViewById<TextView>(R.id.tv_best_first).text = scores[0].toString()
+            dialog.window!!.findViewById<TextView>(R.id.tv_best_second).text = scores[1].toString()
+            dialog.window!!.findViewById<TextView>(R.id.tv_best_third).text = scores[2].toString()
+
+            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            dialog.window?.setLayout(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+            dialog.window?.attributes?.windowAnimations = R.style.DialogAnimation
+            dialog.window?.setGravity(Gravity.CENTER)
+
+            dialog.show()
+        }
+    }
+}
