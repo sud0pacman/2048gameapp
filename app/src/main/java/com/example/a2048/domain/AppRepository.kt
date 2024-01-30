@@ -52,6 +52,13 @@ class AppRepository(private val context: Context) {
             addNewElement()
         }
 
+//        matrix = arrayOf(
+//            arrayOf(2, 4, 8, 16),
+//            arrayOf(32, 64, 128, 256),
+//            arrayOf(512, 1024, 2048, 4),
+//            arrayOf(16, 32, 64, 4)
+//        )
+
         score = MySharedPreferences.getScore()
         bestScore = MySharedPreferences.getBestScores()[0]
 
@@ -285,6 +292,7 @@ class AppRepository(private val context: Context) {
     fun resetGame() {
         MySharedPreferences.saveBestScores(bestScore)
         MySharedPreferences.clearScoreAndState()
+
         for (index in lastStepMatrix.indices) {
             for (j in lastStepMatrix[index].indices) {
                 lastStepMatrix[index][j] = 0
@@ -300,22 +308,20 @@ class AppRepository(private val context: Context) {
     }
 
     fun isGameOver(): Boolean {
-        // Check if any moves are possible
-        val originalMatrix = matrix.deepCopyCopyMatrix()
-        val simulatedMoves = listOf(
-            { moveToLeft() },
-            { moveToRight() },
-            { moveToUp() },
-            { moveToDown() }
-        )
-
-        for (moveFunction in simulatedMoves) {
-            moveFunction.invoke()
-            if (!matrix.contentDeepEquals(originalMatrix)) {
-                matrix = originalMatrix
+        // Check if there are any empty cells
+        for (row in matrix) {
+            if (0 in row) {
                 return false
             }
-            matrix = originalMatrix
+        }
+
+        // Check if there are any adjacent cells with the same value
+        for (i in matrix.indices) {
+            for (j in 0 until matrix[i].size - 1) {
+                if (matrix[i][j] == matrix[i][j + 1] || matrix[j][i] == matrix[j + 1][i]) {
+                    return false
+                }
+            }
         }
 
         return true

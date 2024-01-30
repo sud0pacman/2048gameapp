@@ -2,8 +2,16 @@
     <!-- Base application theme. -->
     <style name="Base.Theme._2048" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/my_color</item>
+        <item name="android:statusBarColor">@color/my_color</item>
+        <item name="android:navigationBarColor">@color/my_color</item>
     </style>
 
-    <style name="Theme._2048" parent="Base.Theme._2048" />
+    <style name="Theme._2048" parent="Base.Theme._2048">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="Theme._2048.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

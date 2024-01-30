@@ -111,6 +111,95 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
+    <TextView
+        android:id="@+id/c_game_over"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/mainView"
+        app:layout_constraintBottom_toBottomOf="@id/mainView"
+        app:layout_constraintStart_toStartOf="@id/mainView"
+        app:layout_constraintEnd_toEndOf="@id/mainView"
+        android:background="@drawable/bg_game_over"
+        android:text="@string/game_over"
+        android:textSize="48sp"
+        android:fontFamily="@font/nunito"
+        android:textColor="#E91E63"
+        android:gravity="center"
+        android:clickable="true"
+        android:focusable="true"
+        android:shadowColor="@color/white"
+        android:shadowRadius="16"
+        android:visibility="gone"
+        android:layout_marginBottom="2dp"
+        />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/c_restart_game"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="@id/mainView"
+        app:layout_constraintBottom_toBottomOf="@id/mainView"
+        app:layout_constraintStart_toStartOf="@id/mainView"
+        app:layout_constraintEnd_toEndOf="@id/mainView"
+        android:background="@drawable/bg_restart_game"
+        android:visibility="gone"
+        android:layout_marginBottom="2dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="44sp"
+            android:textColor="#DBE603"
+            android:text="@string/restart"
+            android:fontFamily="@font/nunito"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center"
+            app:layout_constraintVertical_bias="0.4"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.68"
+            android:textColor="#e29b04"
+            android:fontFamily="@font/nunito"
+            />
+
+
+        <TextView
+            android:id="@+id/tv_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.68"
+            android:textColor="#e29b04"
+            android:fontFamily="@font/nunito"
+            />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/restart"
@@ -190,11 +279,11 @@
         app:layout_constraintStart_toStartOf="@id/mainView"
         app:layout_constraintTop_toTopOf="@id/c_score"
         app:layout_constraintBottom_toBottomOf="@id/c_score"
-        android:textColor="@color/white"
+        android:textColor="#DEE802"
         android:fontFamily="@font/nunito"
         app:layout_constraintEnd_toStartOf="@id/c_score"
         app:layout_constraintHorizontal_bias="0"
-        android:textSize="48sp"
+        android:textSize="40sp"
         android:layout_marginBottom="12dp"
         />
 
@@ -218,7 +307,7 @@
             app:layout_constraintStart_toStartOf="@id/c_high_score"
             app:layout_constraintEnd_toEndOf="@id/c_high_score"
             android:text="@string/high_score"
-            android:textColor="#B3FFFFFF"
+            android:textColor="#e29b04"
             android:textSize="12sp"
             android:focusable="true"
             android:gravity="center"
@@ -236,8 +325,8 @@
             app:layout_constraintTop_toTopOf="@id/c_high_score"
             app:layout_constraintStart_toStartOf="@id/c_high_score"
             app:layout_constraintEnd_toEndOf="@id/c_high_score"
-            android:text="0"
-            android:textColor="@color/white"
+            android:text="@string/_0"
+            android:textColor="#1CB0F6"
             android:focusable="true"
             android:gravity="center"
             android:textSize="18sp"
@@ -267,7 +356,7 @@
             app:layout_constraintStart_toStartOf="@id/c_high_score"
             app:layout_constraintEnd_toEndOf="@id/c_high_score"
             android:text="@string/score"
-            android:textColor="#B3FFFFFF"
+            android:textColor="#e29b04"
             android:textSize="12sp"
             android:focusable="true"
             android:gravity="center"
@@ -285,8 +374,8 @@
             app:layout_constraintTop_toTopOf="@id/c_high_score"
             app:layout_constraintStart_toStartOf="@id/c_high_score"
             app:layout_constraintEnd_toEndOf="@id/c_high_score"
-            android:text="0"
-            android:textColor="@color/white"
+            android:text="@string/_0"
+            android:textColor="#1CB0F6"
             android:focusable="true"
             android:gravity="center"
             android:textSize="18sp"

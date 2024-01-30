@@ -3,19 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#283361">
+    android:background="#222a4b">
 
     <TextView
         android:id="@+id/title_info"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@color/my_color"
+        android:layout_height="76dp"
+        android:background="#182336"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/info"
         android:textColor="@color/white"
         android:fontFamily="@font/nunito"
-        android:gravity="center"
+        android:gravity="center|bottom"
         android:textSize="18sp"
+        android:paddingBottom="16dp"
         />
 
     <ImageView
@@ -25,7 +26,6 @@
         android:src="@drawable/round_arrow_back_24"
         app:tint="@color/white"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintTop_toTopOf="@id/title_info"
         app:layout_constraintBottom_toBottomOf="@id/title_info"
         app:layout_constraintStart_toStartOf="parent"
         android:background="?selectableItemBackgroundBorderless"
@@ -47,7 +47,8 @@
        app:layout_constraintTop_toBottomOf="@id/title_info"
        app:layout_constraintBottom_toBottomOf="parent"
        android:layout_marginBottom="16dp"
-       android:background="#283361">
+       android:paddingVertical="16dp"
+       android:background="#222a4b">
 
 
        <TextView
@@ -55,7 +56,6 @@
            android:layout_height="0dp"
            app:layout_constraintTop_toBottomOf="@id/line_title_bottom"
            app:layout_constraintBottom_toBottomOf="parent"
-           android:paddingVertical="16dp"
            android:paddingTop="12dp"
            android:paddingHorizontal="16dp"
            android:paddingBottom="24dp"

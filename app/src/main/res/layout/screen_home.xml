@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/nunito"
             android:text="@string/swipe_amp_merge"
-            android:textColor="@color/white"
+            android:textColor="#e29b04"
             android:textSize="18sp"
             android:gravity="center"
             app:layout_constraintBottom_toBottomOf="@id/c_title"

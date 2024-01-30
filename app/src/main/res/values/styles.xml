@@ -31,4 +31,13 @@
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
 
+
+    <style name="GameOver">
+        <item name="android:windowEnterAnimation">@anim/game_over_open</item>
+        <item name="android:windowExitAnimation">@anim/game_over_close</item>
+    </style>
+
+
+
+
 </resources>

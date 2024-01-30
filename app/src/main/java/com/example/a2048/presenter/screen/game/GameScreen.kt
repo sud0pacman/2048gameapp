@@ -1,12 +1,20 @@
 package com.example.a2048.presenter.screen.game
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.get
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -15,12 +23,15 @@ import com.example.a2048.data.SideEnum
 import com.example.a2048.databinding.ScreenGameBinding
 import com.example.a2048.utils.MyBackgroundUtil
 import com.example.a2048.utils.MyTouchListener
+import jp.wasabeef.blurry.Blurry
+
 
 class GameScreen : Fragment(R.layout.screen_game) {
     private val binding by viewBinding(ScreenGameBinding::bind)
     private val views = ArrayList<AppCompatTextView>()
     private val viewModel = GameViewModel()
     private lateinit var matrix: Array<Array<Int>>
+    private  var gameOver = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setupOnBackPressed()
@@ -40,10 +51,12 @@ class GameScreen : Fragment(R.layout.screen_game) {
             loadBestScore()
         }
 
+        viewModel.isGameOverLiveData.observe(viewLifecycleOwner) {
+            gameOver = true
+            openGameOverUI()
+        }
+
         viewModel.loadData()
-
-        binding.icBack.setOnClickListener { viewModel.getLastStep() }
-
     }
 
     private fun loadDataToUI(matrix: Array<Array<Int>>) {
@@ -72,15 +85,38 @@ class GameScreen : Fragment(R.layout.screen_game) {
 
         binding.icHome.setOnClickListener { findNavController().popBackStack() }
 
-        binding.restart.setOnClickListener {viewModel.restartGame() }
+        binding.icBack.setOnClickListener {
+            if (gameOver) {
+                closeGameOverUI()
+                gameOver = false
+            }
+
+            viewModel.getLastStep()
+        }
+
+        binding.restart.setOnClickListener {
+            if (!gameOver) openRestartGameUI()
+            else {
+                closeGameOverUI()
+                gameOver = false
+                viewModel.restartGame()
+            }
+        }
+
+        binding.tvYes.setOnClickListener {
+            viewModel.restartGame()
+            closeResetGameUI()
+        }
+
+        binding.tvNo.setOnClickListener { closeResetGameUI() }
     }
 
     @SuppressLint("ClickableViewAccessibility")
     private fun attachTouchListener() {
-        val myTouchListener = MyTouchListener(requireContext() )
+        val myTouchListener = MyTouchListener(requireContext())
 
         myTouchListener.setActionSideEnumListener {
-            when(it) {
+            when (it) {
                 SideEnum.DOWN -> viewModel.moveToDown()
                 SideEnum.RIGHT -> viewModel.moveToRight()
                 SideEnum.UP -> viewModel.moveToUp()
@@ -109,6 +145,48 @@ class GameScreen : Fragment(R.layout.screen_game) {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 
+
+    private fun openRestartGameUI() {
+        binding.cRestartGame.isVisible = true
+
+        val animationOpen =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.game_over_open)
+        animationOpen.duration = 500
+
+        binding.cRestartGame.startAnimation(animationOpen)
+    }
+
+
+
+    private fun closeResetGameUI() {
+        val animationOpen =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.game_over_close)
+        animationOpen.duration = 500
+
+        binding.cRestartGame.startAnimation(animationOpen)
+
+        binding.cRestartGame.isVisible = false
+    }
+
+    private fun openGameOverUI() {
+        binding.cGameOver.isVisible = true
+
+        val animationOpen =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.game_over_open)
+        animationOpen.duration = 600
+
+        binding.cGameOver.startAnimation(animationOpen)
+    }
+
+    private fun closeGameOverUI() {
+        val animationOpen =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.game_over_close)
+        animationOpen.duration = 500
+
+        binding.cGameOver.startAnimation(animationOpen)
+
+        binding.cGameOver.isVisible = false
+    }
 
 
     override fun onStop() {

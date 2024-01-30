@@ -13,4 +13,8 @@
     <string name="_2nd_place">2nd place:</string>
     <string name="_3rd_place">3rd place:</string>
     <string name="_0">0</string>
+    <string name="game_over">Game Over</string>
+    <string name="restart">Restart?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

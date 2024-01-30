@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/app_nav"
-    app:startDestination="@id/homeScreen">
+    app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/gameScreen"
@@ -19,8 +19,20 @@
             android:id="@+id/action_homeScreen_to_screenInfo"
             app:destination="@id/screenInfo" />
     </fragment>
+
     <fragment
         android:id="@+id/screenInfo"
         android:name="com.example.a2048.presenter.screen.info.ScreenInfo"
         android:label="ScreenInfo" />
+    <fragment
+        android:id="@+id/splashScreen"
+        android:name="com.example.a2048.presenter.screen.splash.SplashScreen"
+        android:label="SplashScreen" >
+        <action
+            android:id="@+id/action_splashScreen_to_homeScreen"
+            app:destination="@id/homeScreen"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true" />
+    </fragment>
+
 </navigation>

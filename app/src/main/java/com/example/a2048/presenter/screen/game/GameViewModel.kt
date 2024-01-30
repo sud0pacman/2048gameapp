@@ -1,5 +1,6 @@
 package com.example.a2048.presenter.screen.game
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,21 +24,25 @@ class GameViewModel : ViewModel() {
 
     fun moveToDown() {
         repository.moveToDown()
+        isGameOver()
         loadData()
     }
 
     fun moveToRight()  {
         repository.moveToRight()
+        isGameOver()
         loadData()
     }
 
     fun moveToUp() {
         repository.moveToUp()
+        isGameOver()
         loadData()
     }
 
     fun moveToLeft() {
         repository.moveToLeft()
+        isGameOver()
         loadData()
     }
 
@@ -49,14 +54,16 @@ class GameViewModel : ViewModel() {
     fun saveData() = repository.saveGameData()
 
     fun loadData() {
-
-        if (repository.isGameOver()) {
-            _isGameOverLiveData.value = repository.isGameOver()
-        }
-
         _matrixLiveData.value = repository.getMatrix()
         _scoreLiveData.value = repository.getScore()
         _bestScoreLiveData.value = repository.getBestScore()
+    }
+
+    private fun isGameOver() {
+        Log.d("TTT", "${repository.isGameOver()}")
+        if (repository.isGameOver()) {
+            _isGameOverLiveData.value = repository.isGameOver()
+        }
     }
 
     fun restartGame() {
