@@ -14,10 +14,21 @@
         android:label="HomeScreen" >
         <action
             android:id="@+id/action_homeScreen_to_gameScreen"
-            app:destination="@id/gameScreen" />
+            app:destination="@id/gameScreen"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            />
+
         <action
             android:id="@+id/action_homeScreen_to_screenInfo"
-            app:destination="@id/screenInfo" />
+            app:destination="@id/screenInfo"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            />
     </fragment>
 
     <fragment
@@ -32,7 +43,12 @@
             android:id="@+id/action_splashScreen_to_homeScreen"
             app:destination="@id/homeScreen"
             app:popUpTo="@id/app_nav"
-            app:popUpToInclusive="true" />
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            />
     </fragment>
 
 </navigation>
