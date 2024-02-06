@@ -55,8 +55,15 @@ class AppRepository(private val context: Context) {
 //        matrix = arrayOf(
 //            arrayOf(2, 4, 8, 16),
 //            arrayOf(32, 64, 128, 256),
-//            arrayOf(512, 1024, 2048, 4),
-//            arrayOf(16, 32, 64, 4)
+//            arrayOf(512, 1024, 2048, 4096),
+//            arrayOf(16, 32, 64, 0)
+//        )
+
+//        matrix = arrayOf(
+//            arrayOf(512, 0, 0, 0),
+//            arrayOf(512, 256, 256, 512),
+//            arrayOf(0, 0, 0, 0),
+//            arrayOf(0, 0, 0, 0)
 //        )
 
         score = MySharedPreferences.getScore()
@@ -66,7 +73,7 @@ class AppRepository(private val context: Context) {
     }
 
 
-    private var addElement = 2
+    private var addElement = mutableListOf(2, 2, 2, 2, 2)
 
     fun getMatrix(): Array<Array<Int>> = matrix
 
@@ -87,7 +94,7 @@ class AppRepository(private val context: Context) {
         if (empty.isEmpty()) return
         val randomIndex = Random.nextInt(0, empty.size)
         val findPairByRandomIndex = empty[randomIndex]
-        matrix[findPairByRandomIndex.first][findPairByRandomIndex.second] = addElement
+        matrix[findPairByRandomIndex.first][findPairByRandomIndex.second] = addElement[Random.nextInt(0, addElement.size)]
     }
 
 
@@ -278,7 +285,13 @@ class AppRepository(private val context: Context) {
     }
 
 
-    fun getScore(): Int = score
+    fun getScore(): Int {
+        if (score >= 1024 && !addElement.contains(4)) {
+            addElement.add(4)
+            addElement.add(4)
+        }
+        return score
+    }
 
     fun getLastStep() {
         matrix =  lastStepMatrix.deepCopyCopyMatrix()
@@ -292,6 +305,8 @@ class AppRepository(private val context: Context) {
     fun resetGame() {
         MySharedPreferences.saveBestScores(bestScore)
         MySharedPreferences.clearScoreAndState()
+        score = 0
+        lastStepScore = 0
 
         for (index in lastStepMatrix.indices) {
             for (j in lastStepMatrix[index].indices) {

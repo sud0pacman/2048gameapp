@@ -63,4 +63,7 @@ dependencies {
 
     // Custom View Binding
     implementation("com.github.kirich1409:viewbindingpropertydelegate:1.5.6")
+
+    // indicator
+    implementation("com.tbuonomo:dotsindicator:5.0")
 }

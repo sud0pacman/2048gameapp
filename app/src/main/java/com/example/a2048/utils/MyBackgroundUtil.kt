@@ -18,6 +18,8 @@ object MyBackgroundUtil {
         2048 to R.drawable.bg_item_2048
     )
 
-    fun backgroundByAmount(amount : Int) = bgMap.getOrDefault(amount, R.drawable.bg_item_1024)
+    fun backgroundByAmount(amount: Int) =
+        if (amount % 2048 != 0) bgMap.getOrDefault(amount % 2048, R.drawable.bg_item_1024)
+        else bgMap.getOrDefault(amount/8, R.drawable.bg_item_1024)
 }
 

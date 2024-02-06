@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">2048</string>
     <string name="high_score">HIGH SCORE</string>
     <string name="score">SCORE</string>
@@ -17,4 +17,10 @@
     <string name="restart">Restart?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="lets_play" tools:ignore="ExtraTranslation">Lets Play</string>
+    <string name="swipe">Swipe</string>
+    <string name="wall">Wall</string>
+    <string name="when1">WHE TWO TILES WITH THE SAME \nNUMBER TOUCH, THEY MERGE INTO ONE!</string>
+    <string name="when2">IT\'S OVER WHEN THE BOARD FILLS UP…</string>
+    <string name="join">JOIN THE NUMBERS AND GET TO \nTHE 2048 TILE!</string>
 </resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">2048</string>
+    <string name="high_score">HIGH SCORE</string>
+    <string name="score">SCORE</string>
+    <string name="_2048">2048</string>
+    <string name="swipe_amp_merge"><![CDATA[Swipe&Merge]]></string>
+    <string name="new_game">New Game</string>
+    <string name="info_2048">2048 is a popular puzzle game that gained widespread popularity upon its release in 2014. Developed by Gabriele Cirulli, it\'s a single-player game played on a 4x4 grid, where the objective is to combine tiles with the same numbers to reach the elusive 2048 tile. Players move tiles in four directions—up, down, left, and right—after each move, a new tile with a value of 2 or 4 appears on the board. The game ends when the grid fills up, and no more moves can be made. While the rules are simple, mastering the game requires strategic planning and forward-thinking. Players must carefully consider each move to maximize tile combinations and avoid gridlock. As tiles combine, higher-valued tiles are created, increasing the challenge and excitement as players progress. With its addictive gameplay and minimalist design, 2048 has captivated millions worldwide and spawned countless clones and variations. Its success lies in its accessibility, offering a satisfying blend of challenge and relaxation that keeps players coming back for more. Whether you\'re a casual gamer or a puzzle enthusiast, 2048 offers an engaging and rewarding experience that\'s easy to pick up but difficult to put down.</string>
+    <string name="info">Info</string>
+    <string name="best_score">Best Score:</string>
+    <string name="stats">Stats</string>
+    <string name="_1st_place">1st place:</string>
+    <string name="_2nd_place">2nd place:</string>
+    <string name="_3rd_place">3rd place:</string>
+    <string name="_0">0</string>
+    <string name="game_over">Game Over</string>
+    <string name="restart">Restart?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="lets_play" tools:ignore="ExtraTranslation">Lets Play</string>
+    <string name="swipe">Swipe</string>
+    <string name="wall">Wall</string>
+    <string name="when1">WHE TWO TILES WITH THE SAME \nNUMBER TOUCH, THEY MERGE INTO ONE!</string>
+    <string name="when2">IT\'S OVER WHEN THE BOARD FILLS UP…</string>
+    <string name="join">JOIN THE NUMBERS AND GET TO \nTHE 2048 TILE!</string>
+</resources>

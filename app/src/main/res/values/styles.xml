@@ -38,6 +38,21 @@
     </style>
 
 
+    <style name="PlayButton.Test">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:background">@drawable/bg_item_0_test</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">24sp</item>
+        <item name="fontFamily">@font/nunito</item>
+    </style>
 
+
+    <style name="PlayButton.Test.MainTest">
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
 
 </resources>

@@ -27,19 +27,19 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.End"
-                tools:text="0" />
+                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -49,19 +49,20 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.End"
-                tools:text="0" />
+                tools:text="2"
+                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -71,19 +72,20 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                tools:text="4"
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.End"
-                tools:text="0" />
+                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -93,19 +95,19 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.Main"
-                tools:text="0" />
+                 />
 
             <androidx.appcompat.widget.AppCompatTextView
                 style="@style/PlayButton.End"
-                tools:text="0"
+                tools:text="2"
                 />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
