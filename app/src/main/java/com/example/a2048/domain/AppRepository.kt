@@ -102,44 +102,36 @@ class AppRepository(private val context: Context) {
         lastStepMatrix = matrix.deepCopyCopyMatrix()
         lastStepScore = score
 
-        var index: Int
-        var isCanAddNewElement = false
-        var isMatrixChanged = false // Flag to track if any changes were made to the matrix
+        var isMatrixChanged = false
 
         for (i in matrix.indices) {
-            index = 0
+            var index = 0
 
-            for (j in matrix[i].indices) {
-                if (matrix[i][j] == 0 || j == 0) {
-                    continue
-                }
-
-                if (matrix[i][index] == matrix[i][j]) {
-                    matrix[i][index] = matrix[i][j] * 2
-
-                    score += matrix[i][index]
-
-                    matrix[i][j] = 0
-                    ++index
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-                } else if (matrix[i][index] == 0) {
-                    matrix[i][index] = matrix[i][j]
-                    matrix[i][j] = 0
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-                } else {
-                    matrix[i][++index] = matrix[i][j]
-                    if (index != j) {
+            for (j in 1 until matrix[i].size) {
+                if (matrix[i][j] != 0) {
+                    if (matrix[i][index] == 0) {
+                        matrix[i][index] = matrix[i][j]
                         matrix[i][j] = 0
                         isMatrixChanged = true
+                    } else if (matrix[i][index] == matrix[i][j]) {
+                        matrix[i][index] *= 2
+                        score += matrix[i][index]
+                        matrix[i][j] = 0
+                        ++index
+                        isMatrixChanged = true
+                    } else {
+                        ++index
+                        if (index != j) {
+                            matrix[i][index] = matrix[i][j]
+                            matrix[i][j] = 0
+                            isMatrixChanged = true
+                        }
                     }
                 }
             }
         }
 
-        // Only add a new element if the matrix has changed
-        if (isMatrixChanged && isCanAddNewElement) {
+        if (isMatrixChanged) {
             addNewElement()
         }
     }
@@ -148,138 +140,112 @@ class AppRepository(private val context: Context) {
         lastStepMatrix = matrix.deepCopyCopyMatrix()
         lastStepScore = score
 
-        var index: Int
-        var isCanAddNewElement = false
         var isMatrixChanged = false
 
-
         for (i in matrix.indices) {
-            index = 3
+            var index = matrix[i].size - 1
 
-            for (j in matrix[i].size - 1 downTo 0) {
-
-                if (matrix[i][j] == 0 || j == 3) {
-                    continue
-                }
-
-                if (matrix[i][index] == matrix[i][j]) {
-                    matrix[i][index] = matrix[i][j] * 2
-
-                    score += matrix[i][index]
-
-                    matrix[i][j] = 0
-                    --index
-
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-                } else if (matrix[i][index] == 0) {
-                    matrix[i][index] = matrix[i][j]
-
-                    matrix[i][j] = 0
-
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-                } else {
-                    matrix[i][--index] = matrix[i][j]
-
-                    if (index != j) {
+            for (j in matrix[i].size - 2 downTo 0) {
+                if (matrix[i][j] != 0) {
+                    if (matrix[i][index] == 0) {
+                        matrix[i][index] = matrix[i][j]
                         matrix[i][j] = 0
                         isMatrixChanged = true
+                    } else if (matrix[i][index] == matrix[i][j]) {
+                        matrix[i][index] *= 2
+                        score += matrix[i][index]
+                        matrix[i][j] = 0
+                        --index
+                        isMatrixChanged = true
+                    } else {
+                        --index
+                        if (index != j) {
+                            matrix[i][index] = matrix[i][j]
+                            matrix[i][j] = 0
+                            isMatrixChanged = true
+                        }
                     }
                 }
             }
         }
 
-
-        if (isCanAddNewElement && isMatrixChanged) addNewElement()
+        if (isMatrixChanged) {
+            addNewElement()
+        }
     }
 
     fun moveToUp() {
-        lastStepScore = score
         lastStepMatrix = matrix.deepCopyCopyMatrix()
+        lastStepScore = score
 
-        var index: Int
-        var isCanAddNewElement = false
-        var isMatrixChanged = false // Flag to track if any changes were made to the matrix
+        var isMatrixChanged = false
 
-        for (j in matrix[0].indices) { // Iterate over columns
-            index = 0 // Start from the top row
+        for (j in matrix[0].indices) {
+            var index = 0
 
-            for (i in matrix.indices) { // Iterate over rows
-                if (matrix[i][j] == 0 || i == 0) {
-                    continue
-                }
-
-                if (matrix[index][j] == matrix[i][j]) {
-                    matrix[index][j] = matrix[i][j] * 2
-                    score += matrix[index][j]
-                    matrix[i][j] = 0
-                    ++index
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-                } else if (matrix[index][j] == 0) {
-                    matrix[index][j] = matrix[i][j]
-                    matrix[i][j] = 0
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-                } else {
-                    matrix[++index][j] = matrix[i][j]
-                    if (index != i) {
+            for (i in 1 until matrix.size) {
+                if (matrix[i][j] != 0) {
+                    if (matrix[index][j] == 0) {
+                        matrix[index][j] = matrix[i][j]
                         matrix[i][j] = 0
                         isMatrixChanged = true
+                    } else if (matrix[index][j] == matrix[i][j]) {
+                        matrix[index][j] *= 2
+                        score += matrix[index][j]
+                        matrix[i][j] = 0
+                        ++index
+                        isMatrixChanged = true
+                    } else {
+                        ++index
+                        if (index != i) {
+                            matrix[index][j] = matrix[i][j]
+                            matrix[i][j] = 0
+                            isMatrixChanged = true
+                        }
                     }
                 }
             }
         }
 
-        // Only add a new element if the matrix has changed
-        if (isMatrixChanged && isCanAddNewElement) {
+        if (isMatrixChanged) {
             addNewElement()
         }
     }
 
     fun moveToDown() {
-        lastStepScore = score
         lastStepMatrix = matrix.deepCopyCopyMatrix()
+        lastStepScore = score
 
-        var index: Int
-        var isCanAddNewElement = false
-        var isMatrixChanged = false // Flag to track if any changes were made to the matrix
+        var isMatrixChanged = false
 
-        for (j in matrix[0].indices) { // Iterate over columns
-            index = matrix.size - 1 // Start from the bottom row
+        for (j in matrix[0].indices) {
+            var index = matrix.size - 1
 
-            for (i in matrix.indices.reversed()) { // Iterate over rows in reverse order
-                if (matrix[i][j] == 0 || i == matrix.size - 1) {
-                    continue
-                }
-
-                if (matrix[index][j] == matrix[i][j]) {
-                    matrix[index][j] = matrix[i][j] * 2
-                    score += matrix[index][j]
-                    matrix[i][j] = 0
-                    --index
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-
-                } else if (matrix[index][j] == 0) {
-                    matrix[index][j] = matrix[i][j]
-                    matrix[i][j] = 0
-                    isCanAddNewElement = true
-                    isMatrixChanged = true
-
-                } else {
-                    matrix[--index][j] = matrix[i][j]
-                    if (index != i) {
+            for (i in matrix.size - 2 downTo 0) {
+                if (matrix[i][j] != 0) {
+                    if (matrix[index][j] == 0) {
+                        matrix[index][j] = matrix[i][j]
                         matrix[i][j] = 0
                         isMatrixChanged = true
+                    } else if (matrix[index][j] == matrix[i][j]) {
+                        matrix[index][j] *= 2
+                        score += matrix[index][j]
+                        matrix[i][j] = 0
+                        --index
+                        isMatrixChanged = true
+                    } else {
+                        --index
+                        if (index != i) {
+                            matrix[index][j] = matrix[i][j]
+                            matrix[i][j] = 0
+                            isMatrixChanged = true
+                        }
                     }
                 }
             }
         }
 
-        // Only add a new element if the matrix has changed
-        if (isMatrixChanged && isCanAddNewElement) {
+        if (isMatrixChanged) {
             addNewElement()
         }
     }
@@ -313,6 +279,8 @@ class AppRepository(private val context: Context) {
                 lastStepMatrix[index][j] = 0
             }
         }
+
+        addElement = mutableListOf(2, 2, 2, 2, 2)
 
         loadGameData()
     }
