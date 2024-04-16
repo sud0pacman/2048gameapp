@@ -7,9 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.a2048.R
 import com.example.a2048.databinding.ScreenSplashBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : Fragment(R.layout.screen_splash) {
@@ -29,9 +32,10 @@ class SplashScreen : Fragment(R.layout.screen_splash) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        Handler().postDelayed({
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(1000)
             findNavController().navigate(R.id.action_splashScreen_to_homeScreen)
-        }, 1000)
+        }
     }
 
     override fun onDestroy() {

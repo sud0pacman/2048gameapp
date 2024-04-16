@@ -9,11 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.a2048.R
 import com.example.a2048.data.MySharedPreferences
 import com.example.a2048.databinding.ScreenHomeBinding
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeScreen : Fragment() {
     private var _binding: ScreenHomeBinding? = null
@@ -29,6 +34,7 @@ class HomeScreen : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setupOnBackPressed()
         val navController = findNavController()
 
         binding.btnPlay.setOnClickListener { navController.navigate(R.id.action_homeScreen_to_gameScreen) }
@@ -54,5 +60,26 @@ class HomeScreen : Fragment() {
 
             dialog.show()
         }
+    }
+
+    private fun setupOnBackPressed() {
+        val callback = object : OnBackPressedCallback(true) {
+            private var backPressedCount = 0
+
+            override fun handleOnBackPressed() {
+                backPressedCount++
+                Toast.makeText(requireContext(), "Again for exit", Toast.LENGTH_SHORT).show()
+                if (backPressedCount == 1) {
+                    lifecycleScope.launch {
+                        delay(2000) // Wait for 2 seconds
+                        backPressedCount = 0 // Reset the count after 2 seconds
+                    }
+                } else if (backPressedCount == 2) {
+                    requireActivity().finish() // Exit the application
+                }
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
     }
 }

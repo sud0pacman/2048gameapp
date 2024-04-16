@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
     app:startDestination="@id/splashScreen">
 
     <fragment
         android:id="@+id/gameScreen"
         android:name="com.example.a2048.presenter.screen.game.GameScreen"
-        android:label="GameScreen" />
+        android:label="GameScreen"
+        tools:layout="@layout/screen_game"/>
+
     <fragment
         android:id="@+id/homeScreen"
         android:name="com.example.a2048.presenter.screen.home.HomeScreen"
-        android:label="HomeScreen" >
+        android:label="HomeScreen"
+        tools:layout="@layout/screen_home">
+
         <action
             android:id="@+id/action_homeScreen_to_gameScreen"
             app:destination="@id/gameScreen"
@@ -34,11 +39,28 @@
     <fragment
         android:id="@+id/screenInfo"
         android:name="com.example.a2048.presenter.screen.info.ScreenInfo"
-        android:label="ScreenInfo" />
+        android:label="ScreenInfo"
+        tools:layout="@layout/screen_info">
+
+        <action
+            android:id="@+id/action_screenInfo_to_gameScreen"
+            app:destination="@id/gameScreen"
+            app:popUpTo="@id/homeScreen"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right"
+            />
+
+    </fragment>
+
     <fragment
         android:id="@+id/splashScreen"
         android:name="com.example.a2048.presenter.screen.splash.SplashScreen"
-        android:label="SplashScreen" >
+        android:label="SplashScreen"
+        tools:layout="@layout/screen_splash">
+
         <action
             android:id="@+id/action_splashScreen_to_homeScreen"
             app:destination="@id/homeScreen"

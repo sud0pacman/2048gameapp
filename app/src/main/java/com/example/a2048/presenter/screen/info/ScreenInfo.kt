@@ -10,6 +10,7 @@ import com.example.a2048.R
 import com.example.a2048.databinding.ScreenInfoBinding
 import com.example.a2048.presenter.screen.adapter.InfoAdapter
 
+
 class ScreenInfo : Fragment(R.layout.screen_info) {
     private val binding by viewBinding(ScreenInfoBinding::bind)
     private val adapter by lazy { InfoAdapter(this) }
@@ -23,8 +24,8 @@ class ScreenInfo : Fragment(R.layout.screen_info) {
                 super.onPageSelected(position)
 
                 val targetVisibility = when (position) {
-                    0, 1 -> View.GONE
-                    2 -> View.VISIBLE
+                    0 -> View.GONE
+                    1 -> View.VISIBLE
                     else -> View.GONE
                 }
 

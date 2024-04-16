@@ -7,11 +7,11 @@ import com.example.a2048.presenter.screen.info.pages.InfoPageThree
 import com.example.a2048.presenter.screen.info.pages.InfoPageTwo
 
 class InfoAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = 2
 
     override fun createFragment(position: Int): Fragment = when (position) {
-        0 -> InfoPageOne()
-        1 -> InfoPageTwo()
+//        0 -> InfoPageOne()
+        0 -> InfoPageTwo()
         else -> InfoPageThree()
     }
 
