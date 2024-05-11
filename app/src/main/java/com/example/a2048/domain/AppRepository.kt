@@ -99,7 +99,7 @@ class AppRepository(private val context: Context) {
 
 
     fun moveToLeft() {
-        lastStepMatrix = matrix.deepCopyCopyMatrix()
+        val tempSave  = matrix.deepCopyCopyMatrix()
         lastStepScore = score
 
         var isMatrixChanged = false
@@ -132,12 +132,13 @@ class AppRepository(private val context: Context) {
         }
 
         if (isMatrixChanged) {
+            lastStepMatrix = tempSave.deepCopyCopyMatrix()
             addNewElement()
         }
     }
 
     fun moveToRight() {
-        lastStepMatrix = matrix.deepCopyCopyMatrix()
+        val tempSave  = matrix.deepCopyCopyMatrix()
         lastStepScore = score
 
         var isMatrixChanged = false
@@ -170,12 +171,13 @@ class AppRepository(private val context: Context) {
         }
 
         if (isMatrixChanged) {
+            lastStepMatrix = tempSave.deepCopyCopyMatrix()
             addNewElement()
         }
     }
 
     fun moveToUp() {
-        lastStepMatrix = matrix.deepCopyCopyMatrix()
+        val tempSave  = matrix.deepCopyCopyMatrix()
         lastStepScore = score
 
         var isMatrixChanged = false
@@ -208,12 +210,13 @@ class AppRepository(private val context: Context) {
         }
 
         if (isMatrixChanged) {
+            lastStepMatrix = tempSave.deepCopyCopyMatrix()
             addNewElement()
         }
     }
 
     fun moveToDown() {
-        lastStepMatrix = matrix.deepCopyCopyMatrix()
+        val tempSave  = matrix.deepCopyCopyMatrix()
         lastStepScore = score
 
         var isMatrixChanged = false
@@ -246,6 +249,7 @@ class AppRepository(private val context: Context) {
         }
 
         if (isMatrixChanged) {
+            lastStepMatrix = tempSave.deepCopyCopyMatrix()
             addNewElement()
         }
     }
